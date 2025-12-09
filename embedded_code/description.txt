@@ -1,0 +1,43 @@
+We are starting over on my pendulum control script.  We need to accomplish the following tasks:
+
+Include libraries, in particular:
+    #include <math.h> 
+    "driver/pulse_cnt.h", attached for context
+
+Set up the PCNT peripheral to use pin 15 (A) and 16 (B) to track encoder values
+Set up globals:
+    pulse_watch_window = 5 (not constant)
+    watch_point_set = False
+    prev_watch_point = 0
+    pulse_threshold = 0.5
+    pulse_trigger = False
+Set up other pins:
+    Pin 8 is pulse pin, digital output, initially HIGH
+
+Set up a GPIO interrupt on pin 17 (N) to reset the encoder value to 0 the first time the app runs.  Once it has run once, this can be disabled.
+Use a global encoder offset to translate from raw encoder values to offset values (where 0 is bottom, and +/- 2000 is top center)
+Use a peak_detection task that will:
+    Check the last_encoder_reading and direction (1 for increasing, -1 for decreasing)
+    If current_encoder_reading != last_encoder_reading:
+        If the direction has changed,
+            Update direction_change flag = True
+            Update latest_peak_time = (current_timestamp - last_encoder_timestamp)
+            Calculate amplitude with (1-cos(pi/2 * (last_encoder_reading / 2000.0)))/2.0
+            Print out last_encoder_reading as peak value, amplitude, and latest_peak_time
+            If amplitude < pulse_threshold:
+                Set pulse_trigger = True
+                Clear the old PCNT watch point (if watch_point_set == True)
+                Add the new PCNT watch point based on direction (=0 +/- pulse_watch_window) and set watch_point_set=True
+        In any case,
+            Set latest_direction = current_direction
+            Update last_encoder_reading = current_encoder_reading
+            Update last_encoder_timestamp = current timestamp
+Set up PCNT watch point function:
+    When triggered, sets pulse_pin LOW and set a flag and timestamp.
+    Use another monitor task to set pin back HIGH and clear the flag after 200ms
+
+Set up a command task that will monitor serial for different commands:
+    STREAM or S: enable/disable streaming of the
+    OFFSET or O: overwrite the global offset
+    UP or U: Increase the pulse_watch_window by 1
+    DOWN or D: Decrease the pulse_watch_window by 1 if it is above 1, otherwise no action

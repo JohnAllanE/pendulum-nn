@@ -1,0 +1,6 @@
+.venv/
+.vscode/
+logs/
+embedded_code/.devcontainer/
+embedded_code/.vscode/
+embedded_code/build/
