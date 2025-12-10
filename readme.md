@@ -41,19 +41,17 @@ The apparatus was designed with two functions:
 ### Simple Pendulum
 
 > Goal: Flexible, adaptive system for precise control and accurate predictions of future machine states.  
-
 > Goal: On-line learning on edge device with minimal prior system knowledge.
 
 In this mode, a magnet at the end of a rotating shaft is subjected to a magnetic impulse when it passes over an electromagnet.  The shaft position is tracked using a combination of an absolute encoder (~0.1-degree resolution) and time-series data interpolation, allowing for a control mode where a neural network learns the system characteristics and adjusts impulse strength to achieve specific target amplitudes.
 
 Beyond a learning exercise, the intent is to develop a flexible control system that is rapidly able to adapt to changing system parameters, such as when the pendulum counterweight is altered, or impule strength is affected by external factors.
 
-### Null-Force Scale (not yet implemented), 
+### Null-Force Scale (not yet implemented)
 
 > Goal: use active methods to improve weigh scale performance by minimizing settling time, maximizing resolution and linearity
 
-In this mode, the same electromagnet is used to provide a controllable force to offset applied forces to a load cell.  This is a modification to standard electronic scale reading which uses a restoring force to maintain a scale in its most linear region. 
-
+In this mode, the same electromagnet is used to provide a controllable force to offset applied forces to a load cell.  This is a modification to standard electronic scale reading which uses a restoring force to maintain a scale in its most linear region.
 
 The plan is to use a neural network to supervise standard [PID](https://en.wikipedia.org/wiki/Proportional%E2%80%93integral%E2%80%93derivative_controller) auto-tuning algorithms based on [published academic results](https://www.researchgate.net/publication/242777564_Neural_Network-based_AutoTuning_for_PID_Controllers).  
 
@@ -84,10 +82,12 @@ These are not intended for presentation, but personal notes for future reference
 ### Emdedded Environment (ESP-IDF) Setup Log (for MacOS)
 
 1. Follow [ESP-IDF MacOS setup](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/linux-macos-setup.html#step-1-install-prerequisites) instructions \#1-3 (in home directory):
+
     ```bash
     brew install cmake ninja dfu-util
     brew install ccache
     ```
+  
 2. Install VSCode ESP-IDF extension  
 3. Run Express setup (ESP-IDF Setup)
    - Python version: usr/local/bin/python
