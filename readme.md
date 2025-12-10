@@ -59,7 +59,19 @@ The plan is to use a neural network to supervise standard [PID](https://en.wikip
 
 ## Notebook links
 
-[EDA](EDA.ipynb) - Initial exploration into encoder and timing data being streamed from device during automatic stimulus-and-decay experiments.  This is intended to validate the data that will be seen by the network and gain a statistical understanding of variance, temporal drift or other factors to provide background and context for later observations.  If, for example, there are significant outliers or glitches present, that may help explain perodic anomalies in network training loss.
+The following EDA notebooks are being created to get a base understanding of the two tasks that a neural network will be undertaking:
+
+1. Decay characteristics of the system to predict future states based on current states in the absence of action
+
+2. Relationship between impulse strength and future position
+
+By combining these two, it is hoped that a network programmed into the embedded hardware will be able to read a current position and target, predict the future state based on no action, and then predict the correct action to correct the future state to minimize loss between it and the target.
+
+### EDA
+
+[Decay](EDA/EDA.ipynb) - Initial exploration into encoder and timing data being streamed from device during automatic stimulus-and-decay experiments.  This is intended to validate the data that will be seen by the network and gain a statistical understanding of variance, temporal drift or other factors to provide background and context for later observations.  If, for example, there are significant outliers or glitches present, that may help explain perodic anomalies in network training loss.
+
+[Fixed Impulse](EDA/fixed_impulse_EDA.ipynb) - Investigation into relationship between impulse strength and resulting pendulum amplitude.  
 
 <a href="https://photos.app.goo.gl/SNn2zTws2jMJB6hWA">
   <img src="media/image.png" alt="Apparatus picture, click to see video" style="height: 300px;">
