@@ -14,10 +14,10 @@
 static const char *TAG = "PendulumControl";
 static int encoder_offset = -380; // Offset to zero the encoder reading
 
-static int pulse_threshold_start = 200;
-static int pulse_threshold_stop = 1000;
+static int pulse_threshold_start = 100;
+static int pulse_threshold_stop = 2000;
 
-static bool build_up_mode = false;
+static bool build_up_mode = true; // Start in build-up mode
 static bool pulsing = false; // Flag to indicate if pulsing is active
 
 // GPIO Pins
@@ -187,9 +187,8 @@ void peak_detection_task(void *arg) {
                     ESP_LOGI(TAG, "build_up_mode stopped");
                 }
 
-                if (!build_up_mode) {
-                    ESP_LOGI(TAG, "Peak value: %d, Timestamp: %lld ms", task_last_encoder_value, timestamp / 1000);
-                }
+                ESP_LOGI(TAG, "Peak value: %d, Timestamp: %lld ms", task_last_encoder_value, timestamp / 1000);
+
             }
 
             // Update last encoder value for next iteration
@@ -286,6 +285,8 @@ void app_main() {
     setup_gpio();
     //setup_debug_gpio();
     setup_pcnt();
+
+    build_up_mode = true; // Ensure we start in build-up mode
 
     // Create the encoder queue
     encoder_queue = xQueueCreate(10, sizeof(encoder_data_t)); // Queue for 10 encoder_data_t structs
