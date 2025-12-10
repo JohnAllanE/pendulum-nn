@@ -61,7 +61,7 @@ The plan is to use a neural network to supervise standard [PID](https://en.wikip
 
 [EDA](EDA.ipynb) - Initial exploration into encoder and timing data being streamed from device during automatic stimulus-and-decay experiments.  This is intended to validate the data that will be seen by the network and gain a statistical understanding of variance, temporal drift or other factors to provide background and context for later observations.  If, for example, there are significant outliers or glitches present, that may help explain perodic anomalies in network training loss.
 
-<a href="[video_url](https://photos.app.goo.gl/SNn2zTws2jMJB6hWA)">
+<a href="https://photos.app.goo.gl/SNn2zTws2jMJB6hWA">
   <img src="media/image.png" alt="Apparatus picture, click to see video" style="height: 300px;">
 </a>
 
