@@ -8,7 +8,7 @@ This is an ongoing project to apply my classroom AI knowledge to my technical di
 
 General approach:
 
-- Design and build the apparatus, 
+- Design and build the apparatus,
 - Develop minimal embedded code to pass data to/from computer and develop AI models on computer
 - Develop final models for purely edge-AI system, where all activities take place on the microcontroller
 
@@ -18,23 +18,23 @@ Tasks:
 - [x] Detailed CAD design
 - [x] Mechanical construction
 - [ ] Electronic circuit construction
-  - [x] Proof-of-concept using pre-existing boards from other projects 
+  - [x] Proof-of-concept using pre-existing boards from other projects
   - [ ] PCB fabrication for edge-AI system
 - [x] Embedded development environment setup
 - [x] Embedded programming for data acquisition
 - [x] EDA and data validation, bug fixes
-- [ ] Proof-of-concept AI model deployment on computer, 
+- [ ] Proof-of-concept AI model deployment on computer,
 - [ ] Network architecture experimentation on computer
   - [ ] Determine suitable size, activation functions etc.
   - [ ] Determine limits for embedded code (network size and latency)
-- [ ] Final embedded system code 
+- [ ] Final embedded system code
   - [x] Hardware libraries tested for required matrix operations
   - [ ] Create matrices based on computer-based testing
   - [ ] Write C opitimizer for on-line learning
 
 ## Apparatus description
 
-<img src="apparatus_CAD.png" width="300">
+<img src="media/apparatus_CAD.png" width="300">
 
 The apparatus was designed with two functions:
 
@@ -61,7 +61,9 @@ The plan is to use a neural network to supervise standard [PID](https://en.wikip
 
 [EDA](EDA.ipynb) - Initial exploration into encoder and timing data being streamed from device during automatic stimulus-and-decay experiments.  This is intended to validate the data that will be seen by the network and gain a statistical understanding of variance, temporal drift or other factors to provide background and context for later observations.  If, for example, there are significant outliers or glitches present, that may help explain perodic anomalies in network training loss.
 
-<video src="demo.mov" width="500"></video>
+<a href="[video_url](https://photos.app.goo.gl/SNn2zTws2jMJB6hWA)">
+  <img src="media/image.png" alt="Apparatus picture, click to see video" style="height: 300px;">
+</a>
 
 ## Other Notes
 
